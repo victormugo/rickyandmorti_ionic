@@ -1,0 +1,45 @@
+<app-header [title]="title" [navigate]="urlBack" [showCloseButton]="true" (actionEmitter)="onClickAction($event)"></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" offset="1">
+        <img src={{personaje.image}}/>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col size="12">
+        <div class="title-details"><h3>Detalles:</h3>
+          <div class="details-details" [ngSwitch]=personaje.status>
+            <div *ngSwitchCase="'Alive'" class="status-color-alive">{{personaje.species | lowercase}} - {{personaje.gender}}</div>
+            <div *ngSwitchCase="'Dead'" class="status-color-dead">{{personaje.species | lowercase}} - {{personaje.gender}}</div>
+            <div *ngSwitchCase="'unknown'" class="status-color-unknown">{{personaje.species | lowercase}} - {{personaje.gender}}</div>
+          </div>
+
+          <div class="details-details">
+            <div class="item-colors">Origen:</div><span class="mt-10" (click)="personajeOrigenDetail()">{{personaje.origin.name}}</span>
+            <div class="item-colors">Localización:</div><span class="mt-10" (click)="personajeLocalizacionDetail()">{{personaje.location.name}}</span>
+          </div>
+        </div>
+
+        <ion-card *ngFor="let episodio of episodios" button="true" (click)="onClickSelectedEpisodio()">
+
+          <ion-card-header>
+            <ion-card-title>{{episodio.name}}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content class="ion-padding">
+            <div class="item-colors">Primera Emisión:</div><span>{{episodio.air_date | date:'longDate'}}</span>
+            <div class="item-colors">Código:</div><span>{{episodio.episode}}</span><br><br>
+          </ion-card-content>
+  
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+

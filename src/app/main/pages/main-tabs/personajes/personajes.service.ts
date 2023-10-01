@@ -4,6 +4,7 @@ import { Subject } from "rxjs";
 import { IPersonaje } from "src/app/core/interfaces/personajes.interface";
 import { MessagesService } from "src/app/core/services/messages";
 import { PersonajesInfoService } from "src/app/main/services/personajes-info.service";
+import { PersonajeDetailsPage } from "../../details/personaje-details/personaje-details.page";
 
 @Injectable({ providedIn: 'root' })
 export class PersonajesService {
@@ -41,8 +42,15 @@ export class PersonajesService {
      * Método que muestra la información del personaje solicitado
      * @param personaje Devuelve información del personaje seleccionado
      */
-    public onClickSelectedPersonaje(personaje: IPersonaje) {
-        console.log('personaje', personaje)
+    public async onClickSelectedPersonaje(personaje: IPersonaje) {
+        const modal = await this._modalCtrl.create({
+            component: PersonajeDetailsPage,
+            componentProps: { personaje },
+            id: 'PersonajeDetailsPage'
+        });
+        modal.present();
+
+        let response = await modal.onWillDismiss();
     }
 
     public async closeModalControl(close: boolean) {
