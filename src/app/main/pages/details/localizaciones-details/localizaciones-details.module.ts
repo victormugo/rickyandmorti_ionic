@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { LocalizacionesDetailsPageRoutingModule } from './localizaciones-details-routing.module';
 
 import { LocalizacionesDetailsPage } from './localizaciones-details.page';
+import { HeaderComponent } from 'src/app/core/components/header/header.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LocalizacionesDetailsPageRoutingModule
+    LocalizacionesDetailsPageRoutingModule,
+    HeaderComponent
   ],
   declarations: [LocalizacionesDetailsPage]
 })

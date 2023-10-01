@@ -88,42 +88,6 @@ export class MessagesService {
     return choice;
   }
 
-  async presentAlertMaterials(message: string) {
-    let choice: any;
-
-    const alert = await this._alertController.create({
-      header: 'Información',
-      subHeader: '',
-      message,
-      backdropDismiss: false,
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (cancel) => {
-            alert.dismiss(cancel);
-            return cancel;
-          }
-        },
-        {
-          text: 'Aceptar',
-          handler: (accept) => {
-            alert.dismiss(accept);
-            return accept;
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-    await alert.onDidDismiss().then((data) => {
-      choice = data;
-    });
-
-    return choice;
-  }
-
   /**
    * Mensaje cargando datos
    * @param message Mensaje informativo en pantalla
@@ -152,10 +116,8 @@ export class MessagesService {
 
     return await this._loadingController.dismiss()
       .then((resultDismiss: any) => {
-        console.log("🚀 ~ file: messages.service.ts:157 ~ MessagesService ~ .then ~ resultDismiss:", resultDismiss)
 
       }).catch((error: any) => {
-        console.log("🚀 ~ file: messages.service.ts:160 ~ MessagesService ~ .then ~ error:", error)
       });
   }
 

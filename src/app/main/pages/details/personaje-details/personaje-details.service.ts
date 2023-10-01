@@ -1,23 +1,27 @@
 import { Injectable } from "@angular/core";
 import { ModalController, NavController } from "@ionic/angular";
 import { Subject } from "rxjs";
-import { IPersonaje } from "src/app/core/interfaces/personajes.interface";
+import { IResultsE } from "src/app/core/interfaces/episodios.interface";
+import { IPersonaje, IResultsP } from "src/app/core/interfaces/personajes.interface";
 import { MessagesService } from "src/app/core/services/messages";
 import { EpisodiosInfoService } from "src/app/main/services/episodios-info.service";
 import { PersonajesInfoService } from "src/app/main/services/personajes-info.service";
-import { LocalizacionesPage } from "../../main-tabs/localizaciones/localizaciones.page";
+import { EpisodiosDetailsPage } from "../episodios-details/episodios-details.page";
+import { LocalizacionesDetailsPage } from "../localizaciones-details/localizaciones-details.page";
+import { LocalizacionesInfoService } from "src/app/main/services/localizaciones-info.service";
+import { IResultsL } from "src/app/core/interfaces/localizaciones.interface";
 
 @Injectable({ providedIn: 'root' })
 export class PersonajeDetailsService {
 
     private destroyed$ = new Subject<void>();
 
-    public personajes: any[] = [];
-    public episodios: any[] = [];
+    public episodios: IResultsE[] = [];
 
     constructor(
         private _personajesInfoService: PersonajesInfoService,
         private _episodiosInfoService: EpisodiosInfoService,
+        private _localizacionInfoService: LocalizacionesInfoService,
         private _messagesService: MessagesService,
         private _modalCtrl: ModalController,
         private _navControl: NavController
@@ -31,51 +35,85 @@ export class PersonajeDetailsService {
      * Método para solicitar al servidor el listado de personajes
      */
     public loadPersonajeDetails(personaje: any) {
+        this.episodios = [];
 
         this._personajesInfoService.getPersonajeInfo(personaje.id)
-            .then(async(result: IPersonaje) => {
-                this.personajes = result.results;
+            .then(async(personajeData: IResultsP) => {
 
                 // Solicitar listado de episodios enlistado bucle
-                for (let episode of personaje.episode) {
+                for (let episode of personajeData.episode) {
                     let result = await this._episodiosInfoService.getEpisodioInfoDetail(episode);
                     this.episodios.push(result);
                 }
-
-                // Añadir en el array de episodios la información
-                this._episodiosInfoService.getEpisodiosInfo()
 
             }).catch((error: any) => {
                 this._messagesService.presentAlertAccept(error);
             });
     }
 
-    public personajeOrigenDetail(personaje: IPersonaje) {
-        // Abrir modal de la localización correspondiente
+    /**
+     * Solciitar al servidor información de la localización del personaje
+     * @param personaje Información del personaje seleccionado
+     */
+    public async personajeOrigenDetail(personaje: IResultsP) {
+        // Solicitar al servidor información sobre la localización origen del personaje
 
+        this._localizacionInfoService.getLocalizacionInfoDetail(personaje.origin.url)
+            .then((localizacionData: IResultsL) => {
+                // Abrir modal con la información de la localizacion detail
+
+                this._openModalLocation(localizacionData);
+
+            }).catch((error: any) => {
+                this._messagesService.presentAlertAccept(error);
+
+            });
     }
 
-    public personajeLocalizacionDetail() {
-        // Abrir modal de la localización correspondiente
+    /**
+     * Solciitar al servidor información de la localización del personaje
+     * @param personaje Información del personaje seleccionado
+     */
+    public async personajeLocalizacionDetail(personaje: IResultsP) {
+        // Solicitar al servidor información sobre la localización del personaje
+
+        this._localizacionInfoService.getLocalizacionInfoDetail(personaje.location.url)
+            .then(async (localizacionData: IResultsL) => {
+                // Abrir modal con la información de la localizacion detail 
+
+                this._openModalLocation(localizacionData);
+
+            }).catch((error: any) => {
+                this._messagesService.presentAlertAccept(error);
+
+            });
     }
 
-    public personajeEpisodiosDetail(personaje: IPersonaje) {
-        // Abrir modal del episodio correspondiente
-    }
+    private async _openModalLocation(localizacionData: IResultsL) {
 
-    public onClickSelectedEpisodio() {
-
-    }
-
-    private async _openModalLocation() {
-        /*const modal = await this._modalCtrl.create({
-            component: LocalizacionesPage,
-            componentProps: { personaje },
-            id: 'PersonajeDetailsPage'
+        const modal = await this._modalCtrl.create({
+            component: LocalizacionesDetailsPage,
+            componentProps: { localizacion: localizacionData },
+            id: 'LocalizacionesDetailsPage'
         });
         modal.present();
 
-        let response = await modal.onWillDismiss();*/
+        let response = await modal.onWillDismiss();
+
+    }
+
+    /**
+     * Abrir modal de la pantalla de listado de episodios
+     */
+    public async onClickSelectedEpisodio(episodio: IResultsE) {
+        const modal = await this._modalCtrl.create({
+            component: EpisodiosDetailsPage,
+            componentProps: { episodio },
+            id: 'EpisodiosDetailsPage'
+        });
+        modal.present();
+
+        let response = await modal.onWillDismiss();
     }
 
     public async closeModalControl(close: boolean) {

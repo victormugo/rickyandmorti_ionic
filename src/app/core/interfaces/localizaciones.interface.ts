@@ -1,16 +1,16 @@
 export interface ILocalizaciones {
-    info: IInfo,
-    results: IResults[],
+    info: IInfoL,
+    results: IResultsL[],
 }
 
-export interface IInfo {
+export interface IInfoL {
     count: number,
     pages: number,
     next: string,
     prev: string
 }
 
-export interface IResults {
+export interface IResultsL {
     id: number,
     name: string,
     type: string,

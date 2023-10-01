@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PersonajeDetailsService } from './personaje-details.service';
 import { IPersonaje } from 'src/app/core/interfaces/personajes.interface';
+import { IResultsE } from 'src/app/core/interfaces/episodios.interface';
 
 @Component({
   selector: 'app-personaje-details',
@@ -19,8 +20,6 @@ export class PersonajeDetailsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('personaje en details: ', this.personaje);
-
   }
 
   ngOnDestroy() {
@@ -36,20 +35,25 @@ export class PersonajeDetailsPage implements OnInit {
     this._personajeDetailsService.loadPersonajeDetails(this.personaje);
   }
 
+  /**
+   * Abrir modal con la información de la localización origen
+   */
   public personajeOrigenDetail() {
     this._personajeDetailsService.personajeOrigenDetail(this.personaje);
   }
 
+  /**
+   * Abrir modal con la información de la localización
+   */
   public personajeLocalizacionDetail() {
-    this._personajeDetailsService.personajeLocalizacionDetail();
-  }
+    this._personajeDetailsService.personajeLocalizacionDetail(this.personaje);
 
-  public personajeEpisodiosDetail() {
-    this._personajeDetailsService.personajeOrigenDetail(this.personaje);
   }
-
-  public onClickSelectedEpisodio() {
-    this._personajeDetailsService.onClickSelectedEpisodio();
+  /**
+   * Abre modal con la información de los episodios
+   */
+  public onClickSelectedEpisodio(episodio: IResultsE) {
+    this._personajeDetailsService.onClickSelectedEpisodio(episodio);
   }
 
   public onClickAction(event: any) {

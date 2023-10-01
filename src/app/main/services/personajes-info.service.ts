@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { IPersonaje } from 'src/app/core/interfaces/personajes.interface';
+import { IPersonaje, IResultsP } from 'src/app/core/interfaces/personajes.interface';
 import { HttpService } from 'src/app/core/services/http.service';
 
 @Injectable({
@@ -62,7 +62,39 @@ export class PersonajesInfoService {
 
       this._httpService.get(url).pipe(takeUntil(this.destroyed$)).subscribe({
 
-        next: async (result: IPersonaje) => {
+        next: async (result: IResultsP) => {
+
+          if (result) {
+            resolve(result);
+
+          } else {
+            reject(false);
+          }
+
+        },
+        error: (error: any) => {
+          reject(error);
+        }
+
+      });
+
+    });
+  }
+
+  /**
+   * Solicitar al servidor información de un personaje
+   * @param personajeUrl Url del personaje
+   * @returns Devolver información de un personaje a partir de su url
+   */
+  public getPersonajeInfoDetail(personajeUrl: string) {
+
+    return new Promise<any>(async (resolve, reject) => {
+
+      const url = personajeUrl;
+
+      this._httpService.get(url).pipe(takeUntil(this.destroyed$)).subscribe({
+
+        next: async (result: IResultsP) => {
 
           if (result) {
             resolve(result);

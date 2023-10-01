@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'episodios-details',
     loadChildren: () => import('./main/pages/details/episodios-details/episodios-details.module').then( m => m.EpisodiosDetailsPageModule)
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 @NgModule({

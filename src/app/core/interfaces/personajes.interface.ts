@@ -1,36 +1,36 @@
 export interface IPersonaje {
-    info: IInfo,
-    results: IResults[],
+    info: IInfoP,
+    results: IResultsP[],
 }
 
-export interface IInfo {
+export interface IInfoP {
     count: number,
     pages: number,
     next: string,
     prev: string
 }
 
-export interface IResults {
+export interface IResultsP{
     id: number,
     name: string,
     status: string,
     species: string,
     type: string,
     gender: string,
-    origin: IOrigin,
-    location: ILocation,
+    origin: IOriginP,
+    location: ILocationP,
     image: string,
     episode: string[],
     url: string,
     created: string
 }
 
-export interface IOrigin {
+export interface IOriginP {
     name: string,
     url: string
 }
 
-export interface ILocation {
+export interface ILocationP {
     name: string,
     url: string
 }

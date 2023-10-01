@@ -1,16 +1,16 @@
 export interface IEpisodio {
-    info: IInfo,
-    results: IResults[],
+    info: IInfoE,
+    results: IResultsE[],
 }
 
-export interface IInfo {
+export interface IInfoE {
     count: number,
     pages: number,
     next: string,
     prev: string
 }
 
-export interface IResults {
+export interface IResultsE {
     id: number,
     name: string,
     air_date: string,

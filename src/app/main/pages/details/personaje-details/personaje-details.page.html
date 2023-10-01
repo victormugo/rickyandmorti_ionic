@@ -10,21 +10,29 @@
 
     <ion-row>
 
+      <!-- Status, especie y género -->
       <ion-col size="12">
-        <div class="title-details"><h3>Detalles:</h3>
-          <div class="details-details" [ngSwitch]=personaje.status>
-            <div *ngSwitchCase="'Alive'" class="status-color-alive">{{personaje.species | lowercase}} - {{personaje.gender}}</div>
-            <div *ngSwitchCase="'Dead'" class="status-color-dead">{{personaje.species | lowercase}} - {{personaje.gender}}</div>
-            <div *ngSwitchCase="'unknown'" class="status-color-unknown">{{personaje.species | lowercase}} - {{personaje.gender}}</div>
-          </div>
-
-          <div class="details-details">
-            <div class="item-colors">Origen:</div><span class="mt-10" (click)="personajeOrigenDetail()">{{personaje.origin.name}}</span>
-            <div class="item-colors">Localización:</div><span class="mt-10" (click)="personajeLocalizacionDetail()">{{personaje.location.name}}</span>
-          </div>
+        <div class="details-details" [ngSwitch]=personaje.status>
+          <div *ngSwitchCase="'Alive'" class="status-color-alive">{{personaje.species | lowercase}} - {{personaje.gender}}</div>
+          <div *ngSwitchCase="'Dead'" class="status-color-dead">{{personaje.species | lowercase}} - {{personaje.gender}}</div>
+          <div *ngSwitchCase="'unknown'" class="status-color-unknown">{{personaje.species | lowercase}} - {{personaje.gender}}</div>
         </div>
+      </ion-col>
 
-        <ion-card *ngFor="let episodio of episodios" button="true" (click)="onClickSelectedEpisodio()">
+      <!-- Listado de localizaciones origen-->
+      <ion-col size="12" class="details-details">
+        <div class="item-colors" (click)="personajeOrigenDetail()">Origen: {{personaje.origin.name}}</div>
+      </ion-col>
+
+      <!-- Listado de localizaciones-->
+      <ion-col size="12" class="details-details">
+        <div class="item-colors" (click)="personajeLocalizacionDetail()">Localización: {{personaje.location.name}}</div>
+      </ion-col>
+
+      <!-- Listado de episodios -->
+      <ion-col size="12" class="details-details">
+        <ion-label>Episodios:</ion-label>
+        <ion-card *ngFor="let episodio of episodios" button="true" (click)="onClickSelectedEpisodio(episodio)">
 
           <ion-card-header>
             <ion-card-title>{{episodio.name}}</ion-card-title>

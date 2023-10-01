@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { EpisodiosDetailsPageRoutingModule } from './episodios-details-routing.module';
 
 import { EpisodiosDetailsPage } from './episodios-details.page';
+import { HeaderComponent } from 'src/app/core/components/header/header.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EpisodiosDetailsPageRoutingModule
+    EpisodiosDetailsPageRoutingModule,
+    HeaderComponent
   ],
   declarations: [EpisodiosDetailsPage]
 })

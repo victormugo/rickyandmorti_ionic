@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EpisodiosService } from './episodios.service';
+import { IResultsE } from 'src/app/core/interfaces/episodios.interface';
 
 @Component({
   selector: 'app-episodios',
@@ -31,8 +32,12 @@ export class EpisodiosPage implements OnInit{
     return this._episodiosService.episodios;
   }
 
-  public onClickSelectedEpisodio(episodio: any) {
-
+  /**
+   * Abrir modal para mostrar la información del episodio seleccionado
+   * @param episodio Episodio seleccionado
+   */
+  public onClickSelectedEpisodio(episodio: IResultsE) {
+    this._episodiosService.onClickSelectedEpisodio(episodio);
   }
 
   public onClickAction(event: any) {
