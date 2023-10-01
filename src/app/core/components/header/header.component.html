@@ -1,0 +1,16 @@
+
+<ion-header>
+  <ion-toolbar color="primary">
+
+    <ion-buttons *ngIf="showCloseButton" slot="end">
+      <ion-icon name="close-outline" size="large" (click)="close()"></ion-icon>
+    </ion-buttons>
+    
+    <ion-buttons *ngIf="showBackButton" ion-button icon-only slot="start">
+      <ion-icon name="chevron-back-outline" size="large" (click)="comeBack()"></ion-icon>
+    </ion-buttons>
+
+    <ion-title class="header-color"><b>{{title}}</b></ion-title>
+    
+  </ion-toolbar>
+</ion-header>

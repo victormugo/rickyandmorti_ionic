@@ -1,17 +1,6 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Episodios
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="title" [navigate]="urlBack" [showCloseButton]="false" (actionEmitter)="onClickAction($event)"></app-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Episodios</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
   <ion-grid>
     <ion-row>

@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { ModalController, NavController } from "@ionic/angular";
 import { Subject } from "rxjs";
 import { IPersonaje } from "src/app/core/interfaces/personajes.interface";
 import { MessagesService } from "src/app/core/services/messages";
@@ -13,7 +14,9 @@ export class PersonajesService {
 
     constructor(
         private _personajesInfoService: PersonajesInfoService,
-        private _messagesService: MessagesService
+        private _messagesService: MessagesService,
+        private _modalCtrl: ModalController,
+        private _navControl: NavController
     ) { }
 
     public destroy() {
@@ -40,6 +43,19 @@ export class PersonajesService {
      */
     public onClickSelectedPersonaje(personaje: IPersonaje) {
         console.log('personaje', personaje)
+    }
 
+    public async closeModalControl(close: boolean) {
+        this._modalCtrl.dismiss(close,'','AlarmsPage');
+    }
+
+    /**
+     * Método para navegar entre pantallas
+     * @param destination pantalla destino
+     */
+    public navigate(destination: string) {
+        this._navControl.navigateForward([destination], {
+            queryParams: {}
+        });
     }
 }

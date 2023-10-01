@@ -9,6 +9,9 @@ import { IPersonaje } from 'src/app/core/interfaces/personajes.interface';
 })
 export class PersonajesPage implements OnInit {
 
+  public title: string = 'Personajes';
+  public urlBack: string = 'main-tabs/personajes';
+
   constructor(
     private _personajesService: PersonajesService
   ) {}
@@ -37,4 +40,18 @@ export class PersonajesPage implements OnInit {
     this._personajesService.onClickSelectedPersonaje(personaje);
   }
 
+  public onClickAction(event: any) {
+    if (event) {
+
+      switch (event?.action) {
+        case 'navigate':
+          this._personajesService.navigate(event.url);
+          break;
+
+        case 'close':
+          this._personajesService.closeModalControl(false);
+          break;
+      }
+    }
+  }
 }

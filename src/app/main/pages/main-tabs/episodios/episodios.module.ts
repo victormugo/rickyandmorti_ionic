@@ -5,13 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { EpisodiosPage } from './episodios.page';
 
 import { EpisodiosPageRoutingModule } from './episodios-routing.module';
+import { HeaderComponent } from 'src/app/core/components/header/header.component';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    EpisodiosPageRoutingModule
+    EpisodiosPageRoutingModule,
+    HeaderComponent
   ],
   declarations: [EpisodiosPage]
 })

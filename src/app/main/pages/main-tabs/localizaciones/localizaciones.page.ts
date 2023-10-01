@@ -9,6 +9,9 @@ import { ILocalizaciones } from 'src/app/core/interfaces/localizaciones.interfac
 })
 export class LocalizacionesPage implements OnInit{
 
+  public title: string = 'Localizaciones';
+  public urlBack: string = 'main-tabs/personajes';
+
   constructor(
     private _localizacionesService: LocalizacionesService
   ) {}
@@ -33,5 +36,19 @@ export class LocalizacionesPage implements OnInit{
 
   }
 
+  public onClickAction(event: any) {
+    if (event) {
+
+      switch (event?.action) {
+        case 'navigate':
+          this._localizacionesService.navigate(event.url);
+          break;
+
+        case 'close':
+          this._localizacionesService.closeModalControl(false);
+          break;
+      }
+    }
+  }
 
 }

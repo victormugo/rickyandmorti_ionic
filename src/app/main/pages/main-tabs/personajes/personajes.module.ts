@@ -5,13 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { PersonajesPage } from './personajes.page';
 
 import { PersonajesPageRoutingModule } from './personajes-routing.module';
+import { HeaderComponent } from 'src/app/core/components/header/header.component';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    PersonajesPageRoutingModule
+    PersonajesPageRoutingModule,
+    HeaderComponent
   ],
   declarations: [PersonajesPage]
 })

@@ -8,6 +8,9 @@ import { EpisodiosService } from './episodios.service';
 })
 export class EpisodiosPage implements OnInit{
 
+  public title: string = 'Episodios';
+  public urlBack: string = 'main-tabs/personajes';
+
   constructor(
     private _episodiosService: EpisodiosService
   ) {}
@@ -30,6 +33,21 @@ export class EpisodiosPage implements OnInit{
 
   public onClickSelectedEpisodio(episodio: any) {
 
+  }
+
+  public onClickAction(event: any) {
+    if (event) {
+
+      switch (event?.action) {
+        case 'navigate':
+          this._episodiosService.navigate(event.url);
+          break;
+
+        case 'close':
+          this._episodiosService.closeModalControl(false);
+          break;
+      }
+    }
   }
 
 

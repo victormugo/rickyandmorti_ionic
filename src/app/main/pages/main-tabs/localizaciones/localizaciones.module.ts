@@ -5,13 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { LocalizacionesPage } from './localizaciones.page';
 
 import { LocalizacionesPageRoutingModule } from './localizaciones-routing.module';
+import { HeaderComponent } from 'src/app/core/components/header/header.component';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    LocalizacionesPageRoutingModule
+    LocalizacionesPageRoutingModule,
+    HeaderComponent
   ],
   declarations: [LocalizacionesPage]
 })

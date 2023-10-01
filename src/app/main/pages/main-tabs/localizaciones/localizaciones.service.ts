@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { ModalController, NavController } from "@ionic/angular";
 import { Subject } from "rxjs";
 import { ILocalizaciones } from "src/app/core/interfaces/localizaciones.interface";
 import { LocalizacionesInfoService } from "src/app/main/services/localizaciones-info.service";
@@ -11,7 +12,9 @@ export class LocalizacionesService {
     public localizaciones: any[] = [];
    
     constructor(
-        private _localizacionesInfoService: LocalizacionesInfoService
+        private _localizacionesInfoService: LocalizacionesInfoService,
+        private _modalCtrl: ModalController,
+        private _navControl: NavController
     ) { }
 
     public destroy() {
@@ -27,5 +30,19 @@ export class LocalizacionesService {
             }).catch((error: any) => {
 
             });
+    }
+
+    public async closeModalControl(close: boolean) {
+        this._modalCtrl.dismiss(close,'','AlarmsPage');
+    }
+
+    /**
+     * Método para navegar entre pantallas
+     * @param destination pantalla destino
+     */
+    public navigate(destination: string) {
+        this._navControl.navigateForward([destination], {
+            queryParams: {}
+        });
     }
 }

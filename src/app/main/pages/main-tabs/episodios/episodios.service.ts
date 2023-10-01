@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { ModalController, NavController } from "@ionic/angular";
 import { Subject } from "rxjs";
 import { IEpisodio } from "src/app/core/interfaces/episodios.interface";
 import { EpisodiosInfoService } from "src/app/main/services/episodios-info.service";
@@ -11,7 +12,9 @@ export class EpisodiosService {
     public episodios: any[] = [];
    
     constructor(
-        private _episodiosService: EpisodiosInfoService
+        private _episodiosService: EpisodiosInfoService,
+        private _modalCtrl: ModalController,
+        private _navControl: NavController
     ) { }
 
     public destroy() {
@@ -27,5 +30,19 @@ export class EpisodiosService {
             }).catch((error: any) => {
 
             });
+    }
+
+    public async closeModalControl(close: boolean) {
+        this._modalCtrl.dismiss(close,'','AlarmsPage');
+    }
+
+    /**
+     * Método para navegar entre pantallas
+     * @param destination pantalla destino
+     */
+    public navigate(destination: string) {
+        this._navControl.navigateForward([destination], {
+            queryParams: {}
+        });
     }
 }
