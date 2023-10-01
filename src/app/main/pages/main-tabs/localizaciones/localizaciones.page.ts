@@ -21,5 +21,16 @@ export class LocalizacionesPage implements OnInit{
   }
 
   ionViewDidEnter() {
+    this._localizacionesService.loadLocalizaciones();
   }
+
+  public get localizaciones() {
+    return this._localizacionesService.localizaciones;
+  }
+
+  public onClickSelectedLocalizacion(localizacion: any) {
+
+  }
+
+
 }

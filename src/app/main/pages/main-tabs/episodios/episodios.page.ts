@@ -21,6 +21,16 @@ export class EpisodiosPage implements OnInit{
   }
 
   ionViewDidEnter() {
+    this._episodiosService.loadEpisodios();
   }
+
+  public get episodios() {
+    return this._episodiosService.episodios;
+  }
+
+  public onClickSelectedEpisodio(episodio: any) {
+
+  }
+
 
 }

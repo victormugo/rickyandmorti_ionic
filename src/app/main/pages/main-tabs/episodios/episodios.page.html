@@ -13,4 +13,26 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-grid>
+    <ion-row>
+
+      <ion-col size="12">
+
+        <ion-card *ngFor="let episodio of episodios" button="true" (click)="onClickSelectedEpisodio(episodio)">
+
+          <ion-card-header>
+            <ion-card-title color="primary">{{episodio.name}}</ion-card-title>
+          </ion-card-header>
+  
+          <ion-card-content>
+            <!--<div class="item-colors">Cliente:</div><span> {{service.NOMBRE_CLIENTE}}</span> -->
+          </ion-card-content>
+  
+        </ion-card>
+
+  </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

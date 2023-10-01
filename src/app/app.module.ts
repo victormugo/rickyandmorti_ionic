@@ -12,11 +12,13 @@ import { AbstractHttpService } from './core/services/abstract-http.service';
 import { EpisodiosService } from './main/pages/main-tabs/episodios/episodios.service';
 import { LocalizacionesService } from './main/pages/main-tabs/localizaciones/localizaciones.service';
 import { PersonajesService } from './main/pages/main-tabs/personajes/personajes.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule, 
+    BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(), 
     AppRoutingModule
   ],

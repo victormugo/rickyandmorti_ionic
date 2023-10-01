@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PersonajesService } from './personajes.service';
+import { IPersonaje } from 'src/app/core/interfaces/personajes.interface';
 
 @Component({
   selector: 'app-personajes',
@@ -21,6 +22,15 @@ export class PersonajesPage implements OnInit {
   }
 
   ionViewDidEnter() {
+    this._personajesService.loadPersonajes();
+  }
+
+  public get personajes() {
+    return this._personajesService.personajes;
+  }
+
+  public onClickSelectedPersonaje(personaje: IPersonaje) {
+
   }
 
 }
