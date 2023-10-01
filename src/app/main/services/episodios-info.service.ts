@@ -31,10 +31,10 @@ export class EpisodiosInfoService {
 
         next: async (result: any) => {
 
-          if (result && result?.results) {
-            resolve(result.results);
+          if (result) {
+            resolve(result);
           } else {
-            reject(result);
+            reject(false);
           }
 
         },

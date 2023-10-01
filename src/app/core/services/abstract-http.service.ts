@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { IResponseCollection, IResponseModel } from '../interfaces/core.interface';
 
 import { throwError as observableThrowError, Observable } from 'rxjs';
-import { MessagesService } from './messages.service';
+import { MessagesService } from './messages';
 
 
 @Injectable({

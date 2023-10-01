@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalizacionesService } from './localizaciones.service';
+import { ILocalizaciones } from 'src/app/core/interfaces/localizaciones.interface';
 
 @Component({
   selector: 'app-localizaciones',
@@ -28,7 +29,7 @@ export class LocalizacionesPage implements OnInit{
     return this._localizacionesService.localizaciones;
   }
 
-  public onClickSelectedLocalizacion(localizacion: any) {
+  public onClickSelectedLocalizacion(localizacion: ILocalizaciones) {
 
   }
 

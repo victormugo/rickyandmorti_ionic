@@ -6,7 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MessagesService } from './core/services/messages.service';
+import { MessagesService } from './core/services/messages';
 import { HttpService } from './core/services/http.service';
 import { AbstractHttpService } from './core/services/abstract-http.service';
 import { EpisodiosService } from './main/pages/main-tabs/episodios/episodios.service';

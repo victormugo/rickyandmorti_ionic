@@ -21,16 +21,18 @@
         <ion-card *ngFor="let localizacion of localizaciones" button="true" (click)="onClickSelectedLocalizacion(localizacion)">
 
           <ion-card-header>
-            <ion-card-title color="primary">{{localizacion.name}}</ion-card-title>
+              <ion-card-title>{{localizacion.name}}</ion-card-title>
           </ion-card-header>
   
-          <ion-card-content>
-            <!--<div class="item-colors">Cliente:</div><span> {{service.NOMBRE_CLIENTE}}</span> -->
+          <ion-card-content class="ion-padding">
+            <div class="item-colors">Nombre:</div><span>{{localizacion.name}}</span>
+            <div class="item-colors">Tipo:</div><span>{{localizacion.type}}</span><br><br>
+            <div class="item-colors"><i>Creado: {{localizacion.created | date:'dd-MM-yyyy'}}</i></div><span> </span>
           </ion-card-content>
   
         </ion-card>
 
-  </ion-col>
+      </ion-col>
 
     </ion-row>
   </ion-grid>

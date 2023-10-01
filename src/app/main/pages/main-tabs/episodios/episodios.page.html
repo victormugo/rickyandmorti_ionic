@@ -21,11 +21,13 @@
         <ion-card *ngFor="let episodio of episodios" button="true" (click)="onClickSelectedEpisodio(episodio)">
 
           <ion-card-header>
-            <ion-card-title color="primary">{{episodio.name}}</ion-card-title>
+            <ion-card-title>{{episodio.name}}</ion-card-title>
           </ion-card-header>
-  
-          <ion-card-content>
-            <!--<div class="item-colors">Cliente:</div><span> {{service.NOMBRE_CLIENTE}}</span> -->
+
+          <ion-card-content class="ion-padding">
+            <div class="item-colors">Primera Emisión:</div><span>{{episodio.air_date | date:'longDate'}}</span>
+            <div class="item-colors">Código:</div><span>{{episodio.episode}}</span><br><br>
+            <div class="item-colors"><i>Creado: {{episodio.created | date:'dd-MM-yyyy'}}</i></div><span> </span>
           </ion-card-content>
   
         </ion-card>

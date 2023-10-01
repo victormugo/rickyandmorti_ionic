@@ -24,3 +24,13 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+/* Own scss classes */
+ion-card-title {
+    color: #fff;
+}
+
+ion-card-subtitle{
+    color: yellow;
+}

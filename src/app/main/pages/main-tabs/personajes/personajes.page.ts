@@ -29,8 +29,12 @@ export class PersonajesPage implements OnInit {
     return this._personajesService.personajes;
   }
 
+  /**
+   * Método que muestra la información del personaje solicitado
+   * @param personaje Información del personaje seleccionado
+   */
   public onClickSelectedPersonaje(personaje: IPersonaje) {
-
+    this._personajesService.onClickSelectedPersonaje(personaje);
   }
 
 }

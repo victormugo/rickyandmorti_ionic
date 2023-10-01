@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
+import { ILocalizaciones } from 'src/app/core/interfaces/localizaciones.interface';
 import { HttpService } from 'src/app/core/services/http.service';
 
 @Injectable({
@@ -29,12 +30,12 @@ export class LocalizacionesInfoService {
 
       this._httpService.get(url).pipe(takeUntil(this.destroyed$)).subscribe({
 
-        next: async (result: any) => {
+        next: async (result: ILocalizaciones) => {
 
-          if (result && result?.results) {
-            resolve(result.results);
+          if (result) {
+            resolve(result);
           } else {
-            reject(result);
+            reject(false);
           }
 
         },

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { AbstractHttpService } from './abstract-http.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MessagesService } from './messages.service';
+import { MessagesService } from './messages';
 import { IResponseCollection, IResponseModel } from '../interfaces/core.interface';
 
 @Injectable({

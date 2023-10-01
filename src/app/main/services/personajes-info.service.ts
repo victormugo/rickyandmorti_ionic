@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
+import { IPersonaje } from 'src/app/core/interfaces/personajes.interface';
 import { HttpService } from 'src/app/core/services/http.service';
 
 @Injectable({
@@ -29,12 +30,45 @@ export class PersonajesInfoService {
 
       this._httpService.get(url).pipe(takeUntil(this.destroyed$)).subscribe({
 
-        next: async (result: any) => {
+        next: async (result: IPersonaje) => {
 
           if (result && result?.results) {
-            resolve(result.results);
+            resolve(result);
+
           } else {
-            reject(result);
+            reject(false);
+          }
+
+        },
+        error: (error: any) => {
+          reject(error);
+        }
+
+      });
+
+    });
+  }
+
+  /**
+   * Petición al servidor para obtener la información de un personaje seleccionado
+   * @param personajeId Identificador del personaje seleccionado
+   * @returns Información de un único personaje
+   */
+  public getPersonajeInfo(personajeId: number) {
+
+    return new Promise<any>(async (resolve, reject) => {
+
+      const url = `https://rickandmortyapi.com/api/character/${personajeId}`;
+
+      this._httpService.get(url).pipe(takeUntil(this.destroyed$)).subscribe({
+
+        next: async (result: IPersonaje) => {
+
+          if (result) {
+            resolve(result);
+
+          } else {
+            reject(false);
           }
 
         },
